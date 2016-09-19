@@ -68,6 +68,14 @@ ENDIF()
 
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D__DEBUG__")
 
+IF (${CMAKE_CXX_COMPILER_ID} MATCHES "(GNU|Clang)")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+ENDIF()
+
+IF (${CMAKE_C_COMPILER_ID} MATCHES "(GNU|Clang)")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+ENDIF()
+
 ############################################################
 ######################## rpath #############################
 ############################################################
