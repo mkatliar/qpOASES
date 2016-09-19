@@ -125,26 +125,29 @@ INSTALL(DIRECTORY include/qpOASES
 ############################################################
 ######################### examples #########################
 ############################################################
-# compile qpOASES examples
-SET(EXAMPLE_NAMES
-    example1
-    example1a
-    example1b
-    example2
-    example3
-    example3b
-    example4
-    example5
-    exampleLP
-    qrecipe
-	qrecipeSchur
-)
+OPTION(qpOASES_MAKE_EXAMPLES "Make qpOASES examples" ON)
 
-FOREACH(ELEMENT ${EXAMPLE_NAMES})
-    ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
-    TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES)
-ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
+IF (qpOASES_MAKE_EXAMPLES)
+	# compile qpOASES examples
+	SET(EXAMPLE_NAMES
+	    example1
+	    example1a
+	    example1b
+	    example2
+	    example3
+	    example3b
+	    example4
+	    example5
+	    exampleLP
+	    qrecipe
+		qrecipeSchur
+	)
 
+	FOREACH(ELEMENT ${EXAMPLE_NAMES})
+	    ADD_EXECUTABLE(${ELEMENT} examples/${ELEMENT}.cpp)
+	    TARGET_LINK_LIBRARIES(${ELEMENT} qpOASES)
+	ENDFOREACH(ELEMENT ${EXAMPLE_NAMES})
+ENDIF()
 
 ##
 ##   end of file
