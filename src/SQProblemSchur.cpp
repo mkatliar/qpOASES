@@ -36,6 +36,7 @@
 
 #include <qpOASES/SQProblemSchur.hpp>
 
+#include "LAPACK.h"
 
 #ifndef __MATLAB__
 # include <cstdarg>
@@ -650,7 +651,7 @@ returnValue SQProblemSchur::setupTQfactorisation( )
 /*
  *	a d d C o n s t r a i n t
  */
-returnValue SQProblemSchur::addConstraint(	int_t number, 
+returnValue SQProblemSchur::addConstraint(	int_t number,
 											SubjectToStatus C_status,
 											BooleanType updateCholesky,
 											BooleanType ensureLI
@@ -2463,7 +2464,7 @@ returnValue SQProblemSchur::backsolveSchurQR( int_t dimS, const real_t* const rh
 }
 
 
-returnValue SQProblemSchur::stepCalcRhs(	int_t nFR, int_t nFX, int_t nAC, int_t* FR_idx, int_t* FX_idx, int_t* AC_idx, real_t& rhs_max, 
+returnValue SQProblemSchur::stepCalcRhs(	int_t nFR, int_t nFX, int_t nAC, int_t* FR_idx, int_t* FX_idx, int_t* AC_idx, real_t& rhs_max,
 											const real_t* const delta_g, const real_t* const delta_lbA, const real_t* const delta_ubA,
 											const real_t* const delta_lb, const real_t* const delta_ub,
 											BooleanType Delta_bC_isZero, BooleanType Delta_bB_isZero,
@@ -3078,7 +3079,7 @@ returnValue SQProblemSchur::resetSchurComplement( BooleanType allowInertiaCorrec
 	delete [] jcn;
 	delete [] irn;
 	delete [] avals;
-	
+
 	if (retval != SUCCESSFUL_RETURN)
 		return THROWERROR(RET_NO_SPARSE_SOLVER);
 

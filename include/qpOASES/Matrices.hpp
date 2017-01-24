@@ -42,63 +42,6 @@
 #include <qpOASES/Indexlist.hpp>
 
 
-#ifdef __USE_SINGLE_PRECISION__
-
-	/** Macro for calling level 3 BLAS operation in single precision. */
-	#define GEMM sgemm_
-	/** Macro for calling level 3 BLAS operation in single precision. */
-	#define SYR ssyr_
-	/** Macro for calling level 3 BLAS operation in single precision. */
-	#define SYR2 ssyr2_
-	/** Macro for calling level 3 BLAS operation in single precision. */
-	#define POTRF spotrf_
-
-#else
-
-	/** Macro for calling level 3 BLAS operation in double precision. */
-	#define GEMM dgemm_
-	/** Macro for calling level 3 BLAS operation in double precision. */
-	#define SYR  dsyr_
-	/** Macro for calling level 3 BLAS operation in double precision. */
-	#define SYR2 dsyr2_
-	/** Macro for calling level 3 BLAS operation in double precision. */
-	#define POTRF dpotrf_
-
-#endif /* __USE_SINGLE_PRECISION__ */
-
-
-extern "C"
-{
-	/** Performs one of the matrix-matrix operation in double precision. */
-	void dgemm_ ( const char*, const char*, const unsigned long*, const unsigned long*, const unsigned long*,
-			const double*, const double*, const unsigned long*, const double*, const unsigned long*,
-			const double*, double*, const unsigned long* );
-	/** Performs one of the matrix-matrix operation in single precision. */
-	void sgemm_ ( const char*, const char*, const unsigned long*, const unsigned long*, const unsigned long*,
-			const float*, const float*, const unsigned long*, const float*, const unsigned long*,
-			const float*, float*, const unsigned long* );
-
-	/** Performs a symmetric rank 1 operation in double precision. */
-	void dsyr_ ( const char *, const unsigned long *, const double *, const double *,
-				 const unsigned long *, double *, const unsigned long *);
-	/** Performs a symmetric rank 1 operation in single precision. */
-	void ssyr_ ( const char *, const unsigned long *, const float *, const float *,
-				 const unsigned long *, float *, const unsigned long *);
-
-	/** Performs a symmetric rank 2 operation in double precision. */
-	void dsyr2_ ( const char *, const unsigned long *, const double *, const double *,
-				  const unsigned long *, const double *, const unsigned long *, double *, const unsigned long *);
-	/** Performs a symmetric rank 2 operation in single precision. */
-	void ssyr2_ ( const char *, const unsigned long *, const float *, const float *,
-				  const unsigned long *, const float *, const unsigned long *, float *, const unsigned long *);
-
-	/** Calculates the Cholesky factorization of a real symmetric positive definite matrix in double precision. */
-	void dpotrf_ ( const char *, const unsigned long *, double *, const unsigned long *, long * );
-	/** Calculates the Cholesky factorization of a real symmetric positive definite matrix in single precision. */
-	void spotrf_ ( const char *, const unsigned long *, float *, const unsigned long *, long * );
-}
-
-
 BEGIN_NAMESPACE_QPOASES
 
 
@@ -298,7 +241,7 @@ class Matrix
 		 *
 		 *  Note: Calling function has to free allocated memory!
 		 *
-		 *  \return Pointer to matrix array. 
+		 *  \return Pointer to matrix array.
 		 */
 		virtual real_t* full() const = 0;
 
@@ -417,7 +360,7 @@ class DenseMatrix : public virtual Matrix
          */
         virtual real_t getNorm(	int_t type = 2	/**< Norm type, 1: one-norm, 2: Euclidean norm. */
 								) const;
-		
+
         /** Get the N-norm of a row
          *  \return N-norm of row \a rNum
          */
@@ -522,7 +465,7 @@ class DenseMatrix : public virtual Matrix
 		 *
 		 *  Note: Calling function has to free allocated memory!
 		 *
-		 *  \return Pointer to matrix array. 
+		 *  \return Pointer to matrix array.
 		 */
 		virtual real_t* full() const;
 
@@ -746,7 +689,7 @@ class SparseMatrix : public virtual Matrix
 		 *
 		 *  Note: Calling function has to free allocated memory!
 		 *
-		 *  \return Pointer to matrix array. 
+		 *  \return Pointer to matrix array.
 		 */
 		virtual real_t* full() const;
 
@@ -820,7 +763,7 @@ class SparseMatrixRow : public virtual Matrix
 		 *	        BT_FALSE otherwise. */
 		virtual BooleanType isDiag( ) const;
 
-		
+
         /** Get the N-norm of the matrix
          *  \return N-norm of the matrix
          */
@@ -926,7 +869,7 @@ class SparseMatrixRow : public virtual Matrix
 		 *
 		 *  Note: Calling function has to free allocated memory!
 		 *
-		 *  \return Pointer to matrix array. 
+		 *  \return Pointer to matrix array.
 		 */
 		virtual real_t* full() const;
 

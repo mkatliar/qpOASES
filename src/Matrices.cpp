@@ -34,6 +34,7 @@
 
 #include <qpOASES/Matrices.hpp>
 
+#include "LAPACK.h"
 
 BEGIN_NAMESPACE_QPOASES
 

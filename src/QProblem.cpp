@@ -35,6 +35,8 @@
 
 #include <qpOASES/QProblem.hpp>
 
+#include "LAPACK.h"
+
 
 BEGIN_NAMESPACE_QPOASES
 
@@ -6362,7 +6364,7 @@ returnValue QProblem::writeQpDataIntoMatFile(	const char* const filename
 	fclose( matFile );
 
 	return SUCCESSFUL_RETURN;
-    
+
 	#else /* __SUPPRESSANYOUTPUT__ */
 
 	return RET_NOT_YET_IMPLEMENTED;
@@ -6415,7 +6417,7 @@ returnValue QProblem::writeQpWorkspaceIntoMatFile(	const char* const filename
 	fclose( matFile );
 
 	return SUCCESSFUL_RETURN;
-    
+
 	#else /* __SUPPRESSANYOUTPUT__ */
 
 	return RET_NOT_YET_IMPLEMENTED;

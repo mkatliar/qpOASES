@@ -35,6 +35,8 @@
 
 #include <qpOASES/QProblemB.hpp>
 
+#include "LAPACK.h"
+
 BEGIN_NAMESPACE_QPOASES
 
 
